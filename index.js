@@ -1,5 +1,4 @@
 var gamepadInfo;
-var gp;
 var buttondisplay;
 
 const gamepadAPI = {
@@ -112,31 +111,27 @@ function changeinfo(type) {
   if(type == "insert") gamepadInfo.innerHTML = `Gamepad connected at index ${gamepadAPI.controller.index}: ${gamepadAPI.controller.id}. It has ${gamepadAPI.controller.buttons.length} buttons and ${gamepadAPI.controller.axes.length} axes.`;
   else gamepadInfo.innerHTML = `Gamepad disconnected. Waiting for reconnection...`;
 
-
 }
 
-function displaybuttons() {
-  var i = gamepadAPI.buttonsStatus;
-  console.log(i);
-  
-    if (gamepadAPI.buttonPressed('A', 'hold')) {
-      buttondisplay = "A";
-      console.log("a");
-    }
-    if (gamepadAPI.buttonPressed('B', 'hold')) {
-      buttondisplay = "B";
-      console.log("b");
 
-    }
-  
-}
-
-setInterval(controlLoop, 3000);
+setInterval(controlLoop, 16);
 //main loop
 function controlLoop() {
   const gp = navigator.getGamepads()[0];
-  console.log('1');
-  displaybuttons();
+console.log(gp);
+
+if (gp.buttons[0].value > 0 || gp.buttons[0].pressed) {
+  console.log("0");
+} else if (gp.buttons[1].value > 0 || gp.buttons[1].pressed) {
+  console.log("1");
+} else if (gp.buttons[2].value > 0 || gp.buttons[2].pressed) {
+  console.log("3");
+} else if (gp.buttons[3].value > 0 || gp.buttons[3].pressed) {
+  console.log("4");
+}
+else {
+  console.log("no button");
+}
 
 
 }
