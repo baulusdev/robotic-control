@@ -27,8 +27,6 @@ window.onload = function() {
 
 };
   
-var gamepadInfo = document.getElementById("gamepad");
-
 window.addEventListener("gamepadconnected", function(event) {
   var gp = navigator.getGamepads()[0];
   gamepadInfo.innerHTML = "Gamepad connected at index " + gp.index + ": " + gp.id + ". It has " + gp.buttons.length + " buttons and " + gp.axes.length + " axes.";
