@@ -17,70 +17,6 @@ const gamepadAPI = {
     console.log('Gamepad disconnected.');
     changeinfo("remove");
   },
-  //updates the controller every frame
-  update() {
-    // Clear the buttons cache
-  gamepadAPI.buttonsCache = [];
-
-  // Move the buttons status from the previous frame to the cache
-  for (let k = 0; k < gamepadAPI.buttonsStatus.length; k++) {
-    gamepadAPI.buttonsCache[k] = gamepadAPI.buttonsStatus[k];
-  }
-
-  // Clear the buttons status
-  gamepadAPI.buttonsStatus = [];
-
-  // Get the gamepad object
-  const c = gamepadAPI.controller || {};
-
-  // Loop through buttons and push the pressed ones to the array
-  const pressed = [];
-  if (c.buttons) {
-    for (let b = 0; b < c.buttons.length; b++) {
-      if (c.buttons[b].pressed) {
-        pressed.push(gamepadAPI.buttons[b]);
-      }
-    }
-  }
-
-  // Loop through axes and push their values to the array
-  const axes = [];
-  if (c.axes) {
-    for (let a = 0; a < c.axes.length; a++) {
-      axes.push(c.axes[a].toFixed(2));
-    }
-  }
-
-  // Assign received values
-  gamepadAPI.axesStatus = axes;
-  gamepadAPI.buttonsStatus = pressed;
-
-  // Return buttons for debugging purposes
-  return pressed;
-  },
-  //checks for pressed buttons
-  buttonPressed(button, hold) {
-    let newPress = false;
-
-  // Loop through pressed buttons
-  for (let i = 0; i < gamepadAPI.buttonsStatus.length; i++) {
-    // If we found the button we're looking for
-    if (gamepadAPI.buttonsStatus[i] === button) {
-      // Set the boolean variable to true
-      newPress = true;
-
-      // If we want to check the single press
-      if (!hold) {
-        // Loop through the cached states from the previous frame
-        for (let j = 0; j < gamepadAPI.buttonsCache.length; j++) {
-          // If the button was already pressed, ignore new press
-          newPress = (gamepadAPI.buttonsCache[j] !== button);
-        }
-      }
-    }
-  }
-  return newPress;
-  },
   buttons: ['DPad-Up','DPad-Down','DPad-Left','DPad-Right',
   'Start','Back','Axis-Left','Axis-Right',
   'LB','RB','Power','A','B','X','Y',],
@@ -93,18 +29,11 @@ const gamepadAPI = {
 window.addEventListener("gamepadconnected", gamepadAPI.connect);
 window.addEventListener("gamepaddisconnected", gamepadAPI.disconnect);
 
-
-
-
-
-
-
-
 //main functions
 
 window.onload = function() {
   gamepadInfo = document.getElementById("gamepad-info");
-  buttondisplay = document.getElementById("button-display");
+  buttondisplay = document.getElementById("btn-log");
 };
 
 function changeinfo(type) {
@@ -114,24 +43,11 @@ function changeinfo(type) {
 }
 
 
-setInterval(controlLoop, 16);
+setInterval(controlLoop, 3000);
 //main loop
 function controlLoop() {
-  const gp = navigator.getGamepads()[0];
-console.log(gp);
+  console.log(gamepadAPI.controller.buttonPressed());
 
-if (gp.buttons[0].value > 0 || gp.buttons[0].pressed) {
-  console.log("0");
-} else if (gp.buttons[1].value > 0 || gp.buttons[1].pressed) {
-  console.log("1");
-} else if (gp.buttons[2].value > 0 || gp.buttons[2].pressed) {
-  console.log("3");
-} else if (gp.buttons[3].value > 0 || gp.buttons[3].pressed) {
-  console.log("4");
-}
-else {
-  console.log("no button");
-}
 
 
 }

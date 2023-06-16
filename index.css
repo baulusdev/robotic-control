@@ -2,6 +2,9 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
+    height: 100vh;
+    width: 100wv;
+    overflow: hidden;
   }
   
   /* Header styles */
@@ -9,17 +12,9 @@ body {
     background-color: #333;
     color: #fff;
     padding: 10px;
-    
     display: flex;
     justify-content: center;
     align-items: center;
-  }
-
-  /* Header styles */
-  header {
-    background-color: #333;
-    color: #fff;
-    padding: 10px;
   }
   
   /* Navigation styles */
@@ -31,10 +26,11 @@ body {
       justify-content: right;
       gap: 20px
   }
-  
-  nav a {
+  /* Link Styles within the nav*/
+  a {
     color: #fff;
     text-decoration: none;
+    font-weight: bold;
     margin-right: 10px;
   }
 
@@ -50,54 +46,12 @@ body {
       color: #eee;
   }
 
-  a {
-      color: #eee;
-      text-decoration: underline;
-      font-weight: bold;
+  #main {
+      height: 82vh;
   }
 
-  #home {
-      height: 100vh;
-  }
-
-  #controls {
-      height: 100vh;
-      
-
-  }
-
-  #robot-container {
-    width: 200px;
-    height: 200px;
-    background-color: gray;
-  }
-
-  .acinner {
-
-      background-color:#333;
-      height: 40vh;
-      width: 40vw;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-  }
-
-  #inner {
-      margin: 5vw;
-  }
-  
-  #inner div p {
-    color: #eee;
-      text-align: justify;
-  }
-
-  #aboutandcontact{
-      width: 100vw;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 10vw;
-      margin-bottom: 5vw;
+  #main div {
+    margin: 1vh;
   }
 
   /* Footer styles */
@@ -109,4 +63,5 @@ body {
 
   footer p {
     text-align: center;
+    color: #fff;
   }
