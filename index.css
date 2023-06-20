@@ -5,6 +5,7 @@ body {
     height: 100vh;
     width: 100wv;
     overflow: hidden;
+    
   }
   
   /* Header styles */
@@ -48,10 +49,63 @@ body {
 
   #main {
       height: 82vh;
+      margin: 1vh;
+    display: grid;
+    grid: repeat(2, 25vw) / auto-flow 100vh;
+  }
+  
+
+  .buttons{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0px;
   }
 
-  #main div {
-    margin: 1vh;
+  .button{
+    background-color: red;
+    text-align: center;
+    width: 10vh;
+    height: 10vh;
+    margin-top: 0px;
+    margin-right: 10px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    
+  }
+
+  .button:hover{
+    cursor: pointer;
+    background-color: darkred;
+
+  }
+
+  #camera {
+    height: 40vh;
+    width: 40vw;
+    color: white;
+    background-color: black;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+  }
+
+  #logs {
+    height: 40vh;
+    width: 40vw;
+    color: white;
+    background-color: black;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   /* Footer styles */
