@@ -40,7 +40,7 @@ body {
   }
 
   p {
-      color: #333;
+      color: #000000;
   }
 
   h3 {
@@ -48,12 +48,20 @@ body {
   }
 
   #main {
-      height: 82vh;
-      margin: 1vh;
-    display: grid;
-    grid: repeat(2, 25vw) / auto-flow 100vh;
-  }
+      height: 84vh;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+        grid-column-gap: 5vw;
+        grid-row-gap: 5vw;
+      }
   
+  #quarter {
+    margin: 5vw;
+    width: 30vw;
+    height: 10vw;
+  }
+
 
   .buttons{
     display: flex;
@@ -86,7 +94,7 @@ body {
   }
 
   #camera {
-    height: 40vh;
+    height: 20vh;
     width: 40vw;
     color: white;
     background-color: black;
@@ -98,7 +106,7 @@ body {
   }
 
   #logs {
-    height: 40vh;
+    height: 20vh;
     width: 40vw;
     color: white;
     background-color: black;

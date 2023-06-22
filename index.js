@@ -1,8 +1,10 @@
 var gamepadInfo;
 var buttondisplay;
 var axesdisplay;
+var motordisplay;
 var linear;
 var angular;
+var enable = false;
 
 const gamepadAPI = {
   controller: {},
@@ -99,7 +101,8 @@ window.addEventListener("gamepaddisconnected", gamepadAPI.disconnect);
 window.onload = function() {
   gamepadInfo = document.getElementById("gamepad-info");
   buttondisplay = document.getElementById("btn-log");
-  axesdisplay = document.getElementById("axs-log")
+  axesdisplay = document.getElementById("axs-log");
+  motordisplay = document.getElementById("mtr-log");
 };
 
 function changeinfo(type) {
@@ -168,13 +171,31 @@ function controlLoop() {
     }
 
     axestest();
+    calculatecontrols();
 }
 //axes[0] = left stick horizontal; axes[1] = left stick vertical; axes[2] = left trigger; axes [3] = right stick horizontal; axes[4] = right stick vertical; axes[5] = right trigger; axes[6] = DPad horizontal; axes[7] = DPad vertical
  function axestest() {
   
   console.log(`LStick-horizontal: ${gamepadAPI.axesStatus[0]}, LStick-vertical: ${gamepadAPI.axesStatus[1]}, RStick-horizontal: ${gamepadAPI.axesStatus[3]}, RStick-vertical: ${gamepadAPI.axesStatus[4]}, Trigger-Left: ${gamepadAPI.axesStatus[2]}, Trigger-Right: ${gamepadAPI.axesStatus[5]}`);
   axesdisplay.innerHTML = `LStick-horizontal: ${gamepadAPI.axesStatus[0]}, LStick-vertical: ${gamepadAPI.axesStatus[1]}, RStick-horizontal: ${gamepadAPI.axesStatus[3]}, RStick-vertical: ${gamepadAPI.axesStatus[4]}, Trigger-Left: ${gamepadAPI.axesStatus[2]}, Trigger-Right: ${gamepadAPI.axesStatus[5]},`;
+
 }
+
+function calculatecontrols() {
+  if(gamepadAPI.buttonPressed("Power")) {
+    enable = true;
+  }
+  if (enable = true) {
+    linear = gamepadAPI.axesStatus[5];
+    angular = gamepadAPI.axesStatus[0]
+  }
+  displaymomotorcalc();
+}
+
+function displaymomotorcalc() {
+  motordisplay.innerHTML = `linear: ${linear}, Angular: ${angular}`;
+}
+
 
 function vibrate() {
   console.log("vibrating");
