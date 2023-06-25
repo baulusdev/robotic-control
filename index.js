@@ -1,7 +1,4 @@
 var gamepadInfo;
-var buttondisplay;
-var axesdisplay;
-var motordisplay;
 var linear;
 var angular;
 var enable = false;
@@ -13,14 +10,14 @@ const gamepadAPI = {
     gamepadAPI.controller = evt.gamepad;
     console.log('Gamepad connected')
     console.log(`InfoGamepad connected at index ${gamepadAPI.controller.index}: ${gamepadAPI.controller.id}. It has ${gamepadAPI.controller.buttons.length} buttons and ${gamepadAPI.controller.axes.length} axes.`);
-    changeinfo("insert");
+    changeinfo("connect");
     vibrate();
   },
   //runs on disconnect event
   disconnect(evt) {
     delete gamepadAPI.controller;
     console.log('Gamepad disconnected.');
-    changeinfo("remove");
+    changeinfo("disconnect");
   },
   update() {
     // Clear the buttons cache
@@ -93,21 +90,26 @@ const gamepadAPI = {
 };
 
 
-window.addEventListener("gamepadconnected", gamepadAPI.connect);
-window.addEventListener("gamepaddisconnected", gamepadAPI.disconnect);
 
-//main functions
 
+//onload
 window.onload = function() {
+  window.addEventListener("gamepadconnected", gamepadAPI.connect);
+  window.addEventListener("gamepaddisconnected", gamepadAPI.disconnect);
   gamepadInfo = document.getElementById("gamepad-info");
-  buttondisplay = document.getElementById("btn-log");
-  axesdisplay = document.getElementById("axs-log");
-  motordisplay = document.getElementById("mtr-log");
+  checkmobile();
 };
 
 function changeinfo(type) {
-  if(type == "insert") gamepadInfo.innerHTML = `Gamepad connected at index ${gamepadAPI.controller.index}: ${gamepadAPI.controller.id}. It has ${gamepadAPI.controller.buttons.length} buttons and ${gamepadAPI.controller.axes.length} axes.`;
-  else gamepadInfo.innerHTML = `Gamepad disconnected. Waiting for reconnection...`;
+  if(type == "connect") {
+    gamepadInfo.innerHTML = `Gamepad connected at index ${gamepadAPI.controller.index}: ${gamepadAPI.controller.id}.`;
+    document.getElementById("gamepad-icon").style.mixBlendMode = "normal";
+  }
+
+  else {
+    gamepadInfo.innerHTML = `Gamepad disconnected. Waiting for reconnection...`;
+    document.getElementById("gamepad-icon").style.mixBlendMode = "luminosity";
+  } 
 
 }
 
@@ -116,69 +118,67 @@ setInterval(controlLoop, 15);
 //main loop
 function controlLoop() {
   gamepadAPI.update();
-  
-    if (gamepadAPI.buttonPressed("A", "hold")) {
-      buttondisplay.innerHTML = `A`;
-      console.log("A");
-    }
-    if (gamepadAPI.buttonPressed("B", "hold")) {
-      buttondisplay.innerHTML = `B`;
-      console.log("B")
-    }
-    if (gamepadAPI.buttonPressed("X", "hold")) {
-      buttondisplay.innerHTML = `X`;
-      console.log("X");
-    }
-    if (gamepadAPI.buttonPressed("Y", "hold")) {
-      buttondisplay.innerHTML = "Y";
-      console.log("Y");
-    }
-    if (gamepadAPI.buttonPressed("Trigger-Left", "hold")) {
-      buttondisplay.innerHTML = "Trigger-Left";
-      console.log("Trigger-Left");
-    }
-    if (gamepadAPI.buttonPressed("Trigger-Right", "hold")) {
-      buttondisplay.innerHTML = "Trigger-Right";
-      console.log("Trigger-Right");
-    }
-    if (gamepadAPI.buttonPressed("LStick-Down")) {
-      buttondisplay.innerHTML = "LStick-Down";
-      console.log("LStick-Down");
-    }
-    if (gamepadAPI.buttonPressed("RStick-Down")) {
-      buttondisplay.innerHTML = "RStick-Down";
-      console.log("RStick-Down");
-    }
-    if (gamepadAPI.buttonPressed("Start")) {
-      buttondisplay.innerHTML = "Start";
-      console.log("Start");
-    }
-    if (gamepadAPI.buttonPressed("Back")) {
-      buttondisplay.innerHTML = "Back";
-      console.log("Back");
-    }
-    if (gamepadAPI.buttonPressed("LB")) {
-      buttondisplay.innerHTML = "LB";
-      console.log("LB");
-    }
-    if (gamepadAPI.buttonPressed("RB")) {
-      buttondisplay.innerHTML = "RB";
-      console.log("RB");
-    }
-    if (gamepadAPI.buttonPressed("Power")) {
-      buttondisplay.innerHTML = "Power";
-      console.log("Power");
-    }
 
-    axestest();
-    calculatecontrols();
+  gamepadlog();
+  calculatecontrols();
 }
 //axes[0] = left stick horizontal; axes[1] = left stick vertical; axes[2] = left trigger; axes [3] = right stick horizontal; axes[4] = right stick vertical; axes[5] = right trigger; axes[6] = DPad horizontal; axes[7] = DPad vertical
- function axestest() {
-  
+function gamepadlog() {
+  //axes
   console.log(`LStick-horizontal: ${gamepadAPI.axesStatus[0]}, LStick-vertical: ${gamepadAPI.axesStatus[1]}, RStick-horizontal: ${gamepadAPI.axesStatus[3]}, RStick-vertical: ${gamepadAPI.axesStatus[4]}, Trigger-Left: ${gamepadAPI.axesStatus[2]}, Trigger-Right: ${gamepadAPI.axesStatus[5]}`);
-  axesdisplay.innerHTML = `LStick-horizontal: ${gamepadAPI.axesStatus[0]}, LStick-vertical: ${gamepadAPI.axesStatus[1]}, RStick-horizontal: ${gamepadAPI.axesStatus[3]}, RStick-vertical: ${gamepadAPI.axesStatus[4]}, Trigger-Left: ${gamepadAPI.axesStatus[2]}, Trigger-Right: ${gamepadAPI.axesStatus[5]},`;
-
+  //buttons
+  if (gamepadAPI.buttonPressed("A", "hold")) {
+    buttondisplay.innerHTML = `A`;
+    console.log("A");
+  }
+  if (gamepadAPI.buttonPressed("B", "hold")) {
+    buttondisplay.innerHTML = `B`;
+    console.log("B")
+  }
+  if (gamepadAPI.buttonPressed("X", "hold")) {
+    buttondisplay.innerHTML = `X`;
+    console.log("X");
+  }
+  if (gamepadAPI.buttonPressed("Y", "hold")) {
+    buttondisplay.innerHTML = "Y";
+    console.log("Y");
+  }
+  if (gamepadAPI.buttonPressed("Trigger-Left", "hold")) {
+    buttondisplay.innerHTML = "Trigger-Left";
+    console.log("Trigger-Left");
+  }
+  if (gamepadAPI.buttonPressed("Trigger-Right", "hold")) {
+    buttondisplay.innerHTML = "Trigger-Right";
+    console.log("Trigger-Right");
+  }
+  if (gamepadAPI.buttonPressed("LStick-Down")) {
+    buttondisplay.innerHTML = "LStick-Down";
+    console.log("LStick-Down");
+  }
+  if (gamepadAPI.buttonPressed("RStick-Down")) {
+    buttondisplay.innerHTML = "RStick-Down";
+    console.log("RStick-Down");
+  }
+  if (gamepadAPI.buttonPressed("Start")) {
+    buttondisplay.innerHTML = "Start";
+    console.log("Start");
+  }
+  if (gamepadAPI.buttonPressed("Back")) {
+    buttondisplay.innerHTML = "Back";
+    console.log("Back");
+  }
+  if (gamepadAPI.buttonPressed("LB")) {
+    buttondisplay.innerHTML = "LB";
+    console.log("LB");
+  }
+  if (gamepadAPI.buttonPressed("RB")) {
+    buttondisplay.innerHTML = "RB";
+    console.log("RB");
+  }
+  if (gamepadAPI.buttonPressed("Power")) {
+    buttondisplay.innerHTML = "Power";
+    console.log("Power");
+  }
 }
 
 function calculatecontrols() {

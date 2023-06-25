@@ -1,9 +1,10 @@
 body {
+  background-color: #444;
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
     height: 100vh;
-    width: 100wv;
+    width: 100vw;
     overflow: hidden;
     
   }
@@ -18,6 +19,9 @@ body {
     align-items: center;
   }
   
+  p {
+    margin: 0px;
+  }
   /* Navigation styles */
   nav {
       background-color: #444;
@@ -25,22 +29,27 @@ body {
       display: flex;
       align-items: center;
       justify-content: right;
-      gap: 20px
+
+    }
+  
+  nav div {
+    display: flex;
+    flex-direction: row;
+    gap: 1vw;
   }
   /* Link Styles within the nav*/
   a {
     color: #fff;
     text-decoration: none;
     font-weight: bold;
-    margin-right: 10px;
   }
 
-  nav a:hover {
+  nav p {
+    color: white;
+  }
+
+  nav p:hover {
       color: #5a5a5a;
-  }
-
-  p {
-      color: #000000;
   }
 
   h3 {
@@ -48,22 +57,38 @@ body {
   }
 
   #main {
-      height: 84vh;
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        grid-template-rows: repeat(2, 1fr);
-        grid-column-gap: 5vw;
-        grid-row-gap: 5vw;
-      }
-  
-  #quarter {
-    margin: 5vw;
-    width: 30vw;
-    height: 10vw;
+    background-color: #444;
+    display: flex;
+    flex-direction: column;
+    gap: 20vh;
+
   }
 
+  #main2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 
-  .buttons{
+  #gamepad-icon {
+    width: 30px;
+    mix-blend-mode: luminosity;
+  }
+
+  #gamepad-wrapper {
+    background-color: #333;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    gap: 1vw;
+  }
+  
+  #button-wrapper {
+    display: none;
+  }
+
+  #buttons{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -83,6 +108,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    font-size: 400%;
 
     
   }
@@ -94,33 +120,31 @@ body {
   }
 
   #camera {
-    height: 20vh;
-    width: 40vw;
-    color: white;
-    background-color: black;
+    height: 50vh;
+    width: 80vw;
+    background-color: #333;
     border-radius: 10px;
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
 
   }
 
-  #logs {
-    height: 20vh;
-    width: 40vw;
-    color: white;
-    background-color: black;
-    border-radius: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+  #camera p {
+    color:white;
+    text-decoration: underline;
+  }  
 
   /* Footer styles */
   footer {
     background-color: #333;
     color: #fff;
     padding: 10px;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    overflow: hidden;
   }
 
   footer p {

@@ -11,59 +11,46 @@
   </header>
   <nav>
     <div>
-      <a href="https://github.com/baulusdev/robotic-control" target="_blank">Github</a>
-      <a href="https://baulus.de" target="_blank">Baulus Homepage</a>
+      <a href="https://github.com/baulusdev/robotic-control" target="_blank"><p>Github</p></a>
+      <a href="https://baulus.de" target="popup"><p>Open External Camera View</p></a>
     </div>
   </nav>
 
   <div id="main">
-    <div id="quarter">
-      <div id="gamepad-wrapper">
-        <div id="gamepad">
-          <p id="gamepad-info">Waiting for gamepad connection...</p>
-        </div>
-        <div id="button-log">
-          <p>Pressed Buttons:</p><p id="btn-log"></p>
-        </div>
-        <div id="axes-log">
-          <p>Turned axes:</p><p id="axs-log"></p>
-        </div>
-        <div id="motor-log">
-          <p>Motor calculation:</p><p id="mtr-log"></p>
-        </div>
+    <div id="gamepad-wrapper">
+      <img id="gamepad-icon" src="assets/742263.png" alt="">
+      <div id="gamepad">
+        <h3 id="gamepad-info">Waiting for gamepad connection...</h3>
       </div>
     </div>
-    <div id="quarter">
+    
+    <div id="main2">
       <div id="button-wrapper">
-        <div class="buttons">
+        <div id="buttons">
           <div class="button">
             <p>↑</p>
           </div>
         </div>
-          <div class="buttons">
-            <div class="button">
-              <p>←</p>
-            </div>
-            <div class="button">
-              <p>↓</p>
-            </div>
-            <div class="button">
-              <p>→</p>
-            </div>
+        <div id="buttons">
+          <div class="button">
+            <p>←</p>
+          </div>
+          <div class="button">
+            <p>↓</p>
+          </div>
+          <div class="button">
+            <p>→</p>
           </div>
         </div>
-    </div>
-    <div id="quarter">
-      <div id="camera">
-        <h1>A camera view will go here</h1>
       </div>
-    </div>
-    <div id="quarter">
-      <div id="logs">
-        <h1>A log view will go here</h1>
+        <div id="camera-wrapper">
+          <div id="camera">
+            <p>Waiting for Camera connection</p>
+          </div>
+        </div>
       </div>
-    </div>
   </div>
+  
    
 
   <footer>
