@@ -30,26 +30,29 @@ body {
       align-items: center;
       justify-content: right;
 
-    }
+  }
   
+  nav a {
+    text-decoration: none;
+  }
+
   nav div {
     display: flex;
     flex-direction: row;
     gap: 1vw;
   }
   /* Link Styles within the nav*/
-  a {
-    color: #fff;
+  
+
+  nav p {
+    color: white;
     text-decoration: none;
     font-weight: bold;
   }
 
-  nav p {
-    color: white;
-  }
-
   nav p:hover {
       color: #5a5a5a;
+      cursor: pointer;
   }
 
   h3 {
@@ -130,10 +133,22 @@ body {
 
   }
 
+  #camera iframe {
+    width: 80vw;
+    height: 50vw;
+  }
+
   #camera p {
     color:white;
     text-decoration: underline;
-  }  
+  }
+  
+  #square {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: red;
+  }
 
   /* Footer styles */
   footer {

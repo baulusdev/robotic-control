@@ -1,0 +1,147 @@
+body {
+    background-color: #444;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      width: 100vw;
+      overflow: hidden;
+      
+    }
+    
+    /* Header styles */
+    header {
+      background-color: #333;
+      color: #fff;
+      padding: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    p {
+      margin: 0px;
+    }
+    /* Navigation styles */
+    nav {
+        background-color: #444;
+        padding: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: right;
+  
+    }
+    
+    nav a {
+      text-decoration: none;
+    }
+  
+    nav div {
+      display: flex;
+      flex-direction: row;
+      gap: 1vw;
+    }
+    /* Link Styles within the nav*/
+    
+  
+    nav p {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+  
+    nav p:hover {
+        color: #5a5a5a;
+        cursor: pointer;
+    }
+  
+    h3 {
+        color: #eee;
+    }
+  
+    #main {
+      background-color: #444;
+      display: flex;
+      flex-direction: column;
+      gap: 20vh;
+  
+    }
+  
+    #main2 {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  
+    #gamepad-icon {
+      width: 30px;
+      mix-blend-mode: luminosity;
+    }
+  
+    #gamepad-wrapper {
+      background-color: #333;
+      padding: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: left;
+      gap: 1vw;
+    }
+    
+    #button-wrapper {
+      
+    }
+  
+    #buttons{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0px;
+    }
+  
+    .button{
+      background-color: red;
+      text-align: center;
+      width: 10vh;
+      height: 10vh;
+      margin-top: 0px;
+      margin-right: 10px;
+      margin-left: 10px;
+      margin-bottom: 10px;
+      border-radius: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 400%;
+  
+      
+    }
+  
+    .button:hover{
+      cursor: pointer;
+      background-color: darkred;
+  
+    }
+    
+    #square {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background-color: red;
+    }
+  
+    /* Footer styles */
+    footer {
+      background-color: #333;
+      color: #fff;
+      padding: 10px;
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      overflow: hidden;
+    }
+  
+    footer p {
+      text-align: center;
+      color: #fff;
+    }

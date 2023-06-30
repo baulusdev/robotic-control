@@ -1,12 +1,9 @@
 var gamepadInfo;
 var linear;
-var linear2;
 var angular;
-var angular2;
 var enable = false;
 var posX = 0;
-var posY = 0;
-var steps = 1;
+var steps = 5;
 
 
 const gamepadAPI = {
@@ -103,6 +100,7 @@ window.onload = function() {
   window.addEventListener("gamepadconnected", gamepadAPI.connect);
   window.addEventListener("gamepaddisconnected", gamepadAPI.disconnect);
   gamepadInfo = document.getElementById("gamepad-info");
+  checkmobile();
 };
 
 function changeinfo(type) {
@@ -132,8 +130,58 @@ function gamepadlog() {
   //axes
   console.log(`LStick-horizontal: ${gamepadAPI.axesStatus[0]}, LStick-vertical: ${gamepadAPI.axesStatus[1]}, RStick-horizontal: ${gamepadAPI.axesStatus[3]}, RStick-vertical: ${gamepadAPI.axesStatus[4]}, Trigger-Left: ${gamepadAPI.axesStatus[2]}, Trigger-Right: ${gamepadAPI.axesStatus[5]}`);
   //buttons
-  
-
+  if (gamepadAPI.buttonPressed("A", "hold")) {
+    buttondisplay.innerHTML = `A`;
+    console.log("A");
+  }
+  if (gamepadAPI.buttonPressed("B", "hold")) {
+    buttondisplay.innerHTML = `B`;
+    console.log("B")
+  }
+  if (gamepadAPI.buttonPressed("X", "hold")) {
+    buttondisplay.innerHTML = `X`;
+    console.log("X");
+  }
+  if (gamepadAPI.buttonPressed("Y", "hold")) {
+    buttondisplay.innerHTML = "Y";
+    console.log("Y");
+  }
+  if (gamepadAPI.buttonPressed("Trigger-Left", "hold")) {
+    buttondisplay.innerHTML = "Trigger-Left";
+    console.log("Trigger-Left");
+  }
+  if (gamepadAPI.buttonPressed("Trigger-Right", "hold")) {
+    buttondisplay.innerHTML = "Trigger-Right";
+    console.log("Trigger-Right");
+  }
+  if (gamepadAPI.buttonPressed("LStick-Down")) {
+    buttondisplay.innerHTML = "LStick-Down";
+    console.log("LStick-Down");
+  }
+  if (gamepadAPI.buttonPressed("RStick-Down")) {
+    buttondisplay.innerHTML = "RStick-Down";
+    console.log("RStick-Down");
+  }
+  if (gamepadAPI.buttonPressed("Start")) {
+    buttondisplay.innerHTML = "Start";
+    console.log("Start");
+  }
+  if (gamepadAPI.buttonPressed("Back")) {
+    buttondisplay.innerHTML = "Back";
+    console.log("Back");
+  }
+  if (gamepadAPI.buttonPressed("LB")) {
+    buttondisplay.innerHTML = "LB";
+    console.log("LB");
+  }
+  if (gamepadAPI.buttonPressed("RB")) {
+    buttondisplay.innerHTML = "RB";
+    console.log("RB");
+  }
+  if (gamepadAPI.buttonPressed("Power")) {
+    buttondisplay.innerHTML = "Power";
+    console.log("Power");
+  }
 }
 
 function calculatecontrols() {
@@ -142,17 +190,8 @@ function calculatecontrols() {
   }
   
     linear = gamepadAPI.axesStatus[5];
-    angular = gamepadAPI.axesStatus[0];
-    angular2 = gamepadAPI.axesStatus[1];
-
-
-    if(linear > -0.8) {
-      steps = 10;
-      
-    }
-    if(linear < -0.8) {
-      steps = 1;
-    }
+    angular = gamepadAPI.axesStatus[0]
+    console.log(angular);
 
   if(angular > 0.2) {
     document.getElementById("square").style.backgroundColor = "green";
@@ -166,26 +205,8 @@ function calculatecontrols() {
     document.getElementById("square").style.backgroundColor = "red";
 
   }
-  
 
-  if(angular2 > 0.2) {
-    document.getElementById("square").style.backgroundColor = "green";
-    posY += steps;
-  }
-  if(angular2 < -0.2) {
-    document.getElementById("square").style.backgroundColor = "blue";
-    posY -= steps;
-  }
-  if(angular2 < 0.2 && angular2 > -0.2) {
-    document.getElementById("square").style.backgroundColor = "red";
-
-  }
-
-  document.getElementById("square").style.top= `${posY}px`;
   document.getElementById("square").style.left= `${posX}px`;
-
-
-  
 
 }
 
