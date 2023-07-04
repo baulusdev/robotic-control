@@ -1,12 +1,10 @@
 var gamepadInfo;
 var linear;
-var linear2;
 var angular;
-var angular2;
 var enable = false;
-var posX = 0;
-var posY = 0;
-var steps = 1;
+var message;
+var zero = 0.0;
+
 
 
 const gamepadAPI = {
@@ -14,8 +12,7 @@ const gamepadAPI = {
   //runs on connect event
   connect(evt) {
     gamepadAPI.controller = evt.gamepad;
-    console.log('Gamepad connected')
-    console.log(`InfoGamepad connected at index ${gamepadAPI.controller.index}: ${gamepadAPI.controller.id}. It has ${gamepadAPI.controller.buttons.length} buttons and ${gamepadAPI.controller.axes.length} axes.`);
+    console.log(`Gamepad connected at index ${gamepadAPI.controller.index}: ${gamepadAPI.controller.id}. It has ${gamepadAPI.controller.buttons.length} buttons and ${gamepadAPI.controller.axes.length} axes.`);
     changeinfo("connect");
     vibrate();
   },
@@ -118,81 +115,44 @@ function changeinfo(type) {
 
 }
 
-
 setInterval(controlLoop, 15);
+
 //main loop
 function controlLoop() {
   gamepadAPI.update();
 
-  gamepadlog();
+  //gamepadlog();
   calculatecontrols();
 }
-//axes[0] = left stick horizontal; axes[1] = left stick vertical; axes[2] = left trigger; axes [3] = right stick horizontal; axes[4] = right stick vertical; axes[5] = right trigger; axes[6] = DPad horizontal; axes[7] = DPad vertical
 function gamepadlog() {
   //axes
+  //axes[0] = left stick horizontal; axes[1] = left stick vertical; axes[2] = left trigger; axes [3] = right stick horizontal; axes[4] = right stick vertical; axes[5] = right trigger; axes[6] = DPad horizontal; axes[7] = DPad vertical
+
   console.log(`LStick-horizontal: ${gamepadAPI.axesStatus[0]}, LStick-vertical: ${gamepadAPI.axesStatus[1]}, RStick-horizontal: ${gamepadAPI.axesStatus[3]}, RStick-vertical: ${gamepadAPI.axesStatus[4]}, Trigger-Left: ${gamepadAPI.axesStatus[2]}, Trigger-Right: ${gamepadAPI.axesStatus[5]}`);
-  //buttons
-  
 
 }
 
 function calculatecontrols() {
-  if(gamepadAPI.buttonPressed("Power")) {
-    enable = true;
-  }
-  
-    linear = gamepadAPI.axesStatus[5];
-    angular = gamepadAPI.axesStatus[0];
-    angular2 = gamepadAPI.axesStatus[1];
 
+  linear = gamepadAPI.axesStatus[5];
+  console.log(linear)
+  angular = gamepadAPI.axesStatus[0];
 
-    if(linear > -0.8) {
-      steps = 10;
-      
-    }
-    if(linear < -0.8) {
-      steps = 1;
-    }
-
-  if(angular > 0.2) {
-    document.getElementById("square").style.backgroundColor = "green";
-    posX += steps;
-  }
-  if(angular < -0.2) {
-    document.getElementById("square").style.backgroundColor = "blue";
-    posX -= steps;
-  }
-  if(angular < 0.2 && angular > -0.2) {
-    document.getElementById("square").style.backgroundColor = "red";
-
-  }
-  
-
-  if(angular2 > 0.2) {
-    document.getElementById("square").style.backgroundColor = "green";
-    posY += steps;
-  }
-  if(angular2 < -0.2) {
-    document.getElementById("square").style.backgroundColor = "blue";
-    posY -= steps;
-  }
-  if(angular2 < 0.2 && angular2 > -0.2) {
-    document.getElementById("square").style.backgroundColor = "red";
-
+  var message = 
+  {
+    "linear": {
+      "x": `${linear}`, "y": "0.00", "z": "0.00"}, 
+    "angular": {
+      "x": "0.00", "y": `${angular}`, "z": "0.00"}
+    
   }
 
-  document.getElementById("square").style.top= `${posY}px`;
-  document.getElementById("square").style.left= `${posX}px`;
+  console.log(message);
+  };
+
 
 
   
-
-}
-
-
-function cameraopen() {
-  window.open("camera.html", "Camera View", "popup");
-}
 
 
 function vibrate() {

@@ -2,8 +2,8 @@ var gamepadInfo;
 var linear;
 var angular;
 var enable = false;
-var posX = 0;
-var steps = 5;
+var type;
+
 
 
 const gamepadAPI = {
@@ -11,8 +11,7 @@ const gamepadAPI = {
   //runs on connect event
   connect(evt) {
     gamepadAPI.controller = evt.gamepad;
-    console.log('Gamepad connected')
-    console.log(`InfoGamepad connected at index ${gamepadAPI.controller.index}: ${gamepadAPI.controller.id}. It has ${gamepadAPI.controller.buttons.length} buttons and ${gamepadAPI.controller.axes.length} axes.`);
+    console.log(`Gamepad connected at index ${gamepadAPI.controller.index}: ${gamepadAPI.controller.id}. It has ${gamepadAPI.controller.buttons.length} buttons and ${gamepadAPI.controller.axes.length} axes.`);
     changeinfo("connect");
     vibrate();
   },
@@ -100,7 +99,6 @@ window.onload = function() {
   window.addEventListener("gamepadconnected", gamepadAPI.connect);
   window.addEventListener("gamepaddisconnected", gamepadAPI.disconnect);
   gamepadInfo = document.getElementById("gamepad-info");
-  checkmobile();
 };
 
 function changeinfo(type) {
@@ -122,15 +120,15 @@ setInterval(controlLoop, 15);
 function controlLoop() {
   gamepadAPI.update();
 
-  gamepadlog();
-  calculatecontrols();
+  //gamepadlog();
 }
+
 //axes[0] = left stick horizontal; axes[1] = left stick vertical; axes[2] = left trigger; axes [3] = right stick horizontal; axes[4] = right stick vertical; axes[5] = right trigger; axes[6] = DPad horizontal; axes[7] = DPad vertical
 function gamepadlog() {
   //axes
   console.log(`LStick-horizontal: ${gamepadAPI.axesStatus[0]}, LStick-vertical: ${gamepadAPI.axesStatus[1]}, RStick-horizontal: ${gamepadAPI.axesStatus[3]}, RStick-vertical: ${gamepadAPI.axesStatus[4]}, Trigger-Left: ${gamepadAPI.axesStatus[2]}, Trigger-Right: ${gamepadAPI.axesStatus[5]}`);
   //buttons
-  if (gamepadAPI.buttonPressed("A", "hold")) {
+  if (gamepadAPI.buttonPressed("Power", "hold")) {
     buttondisplay.innerHTML = `A`;
     console.log("A");
   }
@@ -184,30 +182,28 @@ function gamepadlog() {
   }
 }
 
-function calculatecontrols() {
-  if(gamepadAPI.buttonPressed("Power")) {
-    enable = true;
-  }
-  
-    linear = gamepadAPI.axesStatus[5];
-    angular = gamepadAPI.axesStatus[0]
-    console.log(angular);
 
-  if(angular > 0.2) {
-    document.getElementById("square").style.backgroundColor = "green";
-    posX += steps;
-  }
-  if(angular < -0.2) {
-    document.getElementById("square").style.backgroundColor = "blue";
-    posX -= steps;
-  }
-  if(angular < 0.2 && angular > -0.2) {
-    document.getElementById("square").style.backgroundColor = "red";
 
+
+
+function handlebuttons(type) {
+  console.log(type);
+  switch (type) {
+    case "up":
+      
+      break;
+    case "down":
+
+      break;
+    case "left":
+
+      break;
+    case "right":
+
+      break;
+    default:
+      break;
   }
-
-  document.getElementById("square").style.left= `${posX}px`;
-
 }
 
 

@@ -7,7 +7,7 @@
 </head>
 <body>
   <header>
-    <h1>Remote Robot Control</h1>
+    <h1>Telecontrol</h1>
   </header>
   <nav>
     <div>
@@ -29,27 +29,23 @@
     
     <div id="main2">
       <div id="button-wrapper">
-        <div id="buttons">
-          <div class="button">
+        <div class="buttons">
+          <div class="button" id="btn-up" onclick="handlebuttons('up')">
             <p>↑</p>
           </div>
         </div>
-        <div id="buttons">
-          <div class="button">
+        <div class="buttons">
+          <div class="button" id="btn-left" onclick="handlebuttons('left')">
             <p>←</p>
           </div>
-          <div class="button">
+          <div class="button" id="btn-down" onclick="handlebuttons('down')">
             <p>↓</p>
           </div>
-          <div class="button">
+          <div class="button" id="btn-right" onclick="handlebuttons('right')">
             <p>→</p>
           </div>
         </div>
       </div>
-        
-        <div id="square">
-
-        </div>
       </div>
   </div>
   
